@@ -11,11 +11,11 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: 'LoveFortune - あなたの恋の運命を占う無料診断',
-  description: '7つの質問に答えるだけで、あなたの恋愛タイプと運命の導きがわかる。片想い・復縁・出会いなど、あなたの恋の悩みに最適な占いを提案します。',
+  title: '秘密の恋ノート — 誰にも言えない恋に寄り添う無料占い診断',
+  description: '誰にも言えない恋を抱えたあなたへ。7つの質問に答えるだけで、今のあなたに一番寄り添ってくれる占い師が見つかります。完全無料・個人情報不要。',
   openGraph: {
-    title: 'LoveFortune - あなたの恋の運命を占う無料診断',
-    description: '7つの質問であなたの恋の運命がわかる。無料恋愛占い診断。',
+    title: '秘密の恋ノート — 誰にも言えない恋に寄り添う無料占い診断',
+    description: '誰にも言えない恋の苦しさ 7つの質問で あなたに合った相談相手が見つかります',
     type: 'website',
     locale: 'ja_JP',
   },

@@ -87,7 +87,7 @@ export default function DiagnosisPage() {
         (platform: 'x' | 'line' | 'copy') => {
             if (results.length === 0) return;
             const topResult = results[0];
-            const shareText = `あなたの恋の運命占いの結果は「${topResult.service.name}」（おすすめ度${topResult.matchRate}%）でした！\n\n無料で恋の運命を占う\n${SITE_CONFIG.url}/diagnosis`;
+            const shareText = `秘密の恋占い診断の結果「${topResult.service.name}」が あなたに合ってるみたい（おすすめ度${topResult.matchRate}%）\n\n誰にも言えない恋に寄り添う無料占い診断\n${SITE_CONFIG.url}/diagnosis`;
             if (platform === 'x') {
                 window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`, '_blank');
             } else if (platform === 'line') {
@@ -142,7 +142,7 @@ export default function DiagnosisPage() {
                     {Array.from({ length: 40 }).map((_, i) => (
                         <div key={i} className="confetti-piece" style={{
                             left: `${Math.random() * 100}%`,
-                            backgroundColor: ['#9b7ec8', '#c4a8e0', '#e8d5f5', '#d4b8e8', '#b893d6', '#a67cc8'][Math.floor(Math.random() * 6)],
+                            backgroundColor: ['#8b6b8a', '#b898b6', '#d4b8d3', '#c4a8c3', '#a68da5', '#9b7e9a'][Math.floor(Math.random() * 6)],
                             animationDuration: `${2 + Math.random() * 3}s`,
                             animationDelay: `${Math.random() * 2}s`,
                             width: `${6 + Math.random() * 6}px`,
@@ -154,8 +154,8 @@ export default function DiagnosisPage() {
             )}
             <section className="results-section">
                 <div className="results-header">
-                    <h2>あなたの恋に導かれた占い TOP3</h2>
-                    <p className="results-subtitle">回答を分析し、あなたの恋の悩みに最適な占いを選びました</p>
+                    <h2>あなたに寄り添う占い TOP3</h2>
+                    <p className="results-subtitle">回答を分析して あなたの恋の悩みに一番合った占いを選びました</p>
                 </div>
                 <div className="results-list">
                     {results.map((result, index) => (
@@ -175,7 +175,7 @@ export default function DiagnosisPage() {
                                     {result.service.features.slice(0, 2).map((f, i) => (<li key={i}>{f}</li>))}
                                 </ul>
                                 <a href={result.service.affiliateUrl} target="_blank" rel="noopener noreferrer" className="btn-cta" style={{ background: result.service.color }} id={`cta-${result.service.id}`}>
-                                    詳しく見てみる →
+                                    {result.service.ctaText} →
                                 </a>
                             </div>
                         </div>
