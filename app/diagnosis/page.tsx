@@ -17,6 +17,12 @@ export default function DiagnosisPage() {
     const [copiedToast, setCopiedToast] = useState(false);
     const animatingRef = useRef(false);
 
+    // === Conversion Boosters State ===
+    const [showStickyCtaBar, setShowStickyCtaBar] = useState(false);
+    const [showExitPopup, setShowExitPopup] = useState(false);
+    const [exitPopupShown, setExitPopupShown] = useState(false);
+    const [countdown, setCountdown] = useState({ h: 0, m: 0, s: 0 });
+
     useEffect(() => {
         if (phase !== 'results' || results.length === 0) return;
         const targetRates = results.map((r) => r.matchRate);
@@ -40,6 +46,48 @@ export default function DiagnosisPage() {
             const timer = setTimeout(() => setShowConfetti(false), 4000);
             return () => clearTimeout(timer);
         }
+    }, [phase]);
+
+
+    // === Sticky CTA: show when scrolled past first CTA ===
+    useEffect(() => {
+        if (phase !== 'results') return;
+        const onScroll = () => { setShowStickyCtaBar(window.scrollY > 600); };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, [phase]);
+
+    // === Exit Intent Popup ===
+    useEffect(() => {
+        if (phase !== 'results' || exitPopupShown) return;
+        const onMouseLeave = (e: MouseEvent) => {
+            if (e.clientY <= 0 && !exitPopupShown) { setShowExitPopup(true); setExitPopupShown(true); }
+        };
+        const mobileTimer = setTimeout(() => {
+            if (!exitPopupShown) { setShowExitPopup(true); setExitPopupShown(true); }
+        }, 30000);
+        document.addEventListener('mouseleave', onMouseLeave);
+        return () => { document.removeEventListener('mouseleave', onMouseLeave); clearTimeout(mobileTimer); };
+    }, [phase, exitPopupShown]);
+
+    // === Countdown Timer ===
+    useEffect(() => {
+        if (phase !== 'results') return;
+        const KEY = 'cv_fortune_start';
+        let start = localStorage.getItem(KEY);
+        if (!start) { start = String(Date.now()); localStorage.setItem(KEY, start); }
+        const endTime = Number(start) + 24 * 60 * 60 * 1000;
+        const tick = () => {
+            const remaining = Math.max(0, endTime - Date.now());
+            if (remaining <= 0) localStorage.removeItem(KEY);
+            const h = Math.floor(remaining / 3600000);
+            const m = Math.floor((remaining % 3600000) / 60000);
+            const s = Math.floor((remaining % 60000) / 1000);
+            setCountdown({ h, m, s });
+        };
+        tick();
+        const interval = setInterval(tick, 1000);
+        return () => clearInterval(interval);
     }, [phase]);
 
     const handleAnswer = useCallback(
@@ -205,6 +253,63 @@ export default function DiagnosisPage() {
                         <button className="share-btn copy" onClick={() => handleShare('copy')} id="share-copy">コピー</button>
                     </div>
                 </div>
+                {/* === カウントダウンタイマー === */}
+                <div style={{
+                    background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+                    border: '1px solid rgba(139, 107, 138, 0.3)',
+                    borderRadius: '12px',
+                    padding: '1.2rem',
+                    marginBottom: '1.5rem',
+                    textAlign: 'center' as const,
+                }}>
+                    <p style={{ fontSize: '0.8rem', color: '#8b6b8a', fontWeight: 700, marginBottom: '0.5rem' }}>
+                        ⏰ 特別キャンペーン実施中
+                    </p>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                        {[{ v: countdown.h, l: '時間' }, { v: countdown.m, l: '分' }, { v: countdown.s, l: '秒' }].map((t, i) => (
+                            <div key={i} style={{ textAlign: 'center' as const }}>
+                                <div style={{
+                                    background: 'rgba(139, 107, 138, 0.2)',
+                                    borderRadius: '8px',
+                                    padding: '0.4rem 0.6rem',
+                                    fontSize: '1.4rem',
+                                    fontWeight: 900,
+                                    color: 'white',
+                                    minWidth: '3rem',
+                                    fontVariantNumeric: 'tabular-nums',
+                                }}>
+                                    {String(t.v).padStart(2, '0')}
+                                </div>
+                                <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', marginTop: '2px' }}>{t.l}</div>
+                            </div>
+                        ))}
+                    </div>
+                    <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)' }}>
+                        この時間内の登録で特別特典あり
+                    </p>
+                </div>
+                {/* === 口コミ・体験談セクション === */}
+                <div style={{ marginBottom: '2rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'white', textAlign: 'center' as const, marginBottom: '1rem' }}>
+                        💬 利用者の声
+                    </h3>
+                    {[{"age":"28歳 女性","text":"占い師さんに背中を押されて告白できました。あの時相談していなかったら…後悔してたと思います。","stars":5},{"age":"35歳 男性","text":"元カノとの復縁を相談。アドバイス通り行動したら3週間で連絡が来ました。","stars":5},{"age":"31歳 女性","text":"無料なのにここまで的中するとは…！友達にも勧めまくってます。","stars":4}].map((review: { age: string; text: string; stars: number }, i: number) => (
+                        <div key={i} style={{
+                            background: 'rgba(255,255,255,0.05)',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            borderRadius: '10px',
+                            padding: '1rem',
+                            marginBottom: '0.8rem',
+                        }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                                <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'rgba(255,255,255,0.8)' }}>{review.age}</span>
+                                <span style={{ color: '#ffd700', fontSize: '0.85rem' }}>{'★'.repeat(review.stars)}{'☆'.repeat(5 - review.stars)}</span>
+                            </div>
+                            <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, margin: 0 }}>{review.text}</p>
+                        </div>
+                    ))}
+                </div>
+
                 {/* 損失回避メッセージ */}
                 <div style={{
                     background: 'rgba(139, 107, 138, 0.1)',
@@ -234,6 +339,109 @@ export default function DiagnosisPage() {
                     </a>
                 </div>
             </section>
+            {/* === スティッキーCTA === */}
+            {phase === 'results' && showStickyCtaBar && results.length > 0 && (
+                <div style={{
+                    position: 'fixed',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    background: 'linear-gradient(135deg, #8b6b8a 0%, #8b6b8add 100%)',
+                    padding: '0.8rem 1rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.8rem',
+                    zIndex: 1000,
+                    boxShadow: '0 -4px 20px rgba(139, 107, 138, 0.4)',
+                }}>
+                    <span style={{ color: 'white', fontSize: '0.85rem', fontWeight: 700 }}>
+                        1位: {results[0]?.service.name}
+                    </span>
+                    <a
+                        href={results[0]?.service.affiliateUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            background: 'white',
+                            color: '#8b6b8a',
+                            padding: '0.5rem 1.2rem',
+                            borderRadius: '25px',
+                            fontWeight: 900,
+                            fontSize: '0.85rem',
+                            textDecoration: 'none',
+                            whiteSpace: 'nowrap' as const,
+                        }}
+                    >
+                        🔥 占い師に無料相談 →
+                    </a>
+                </div>
+            )}
+            {/* === 離脱防止ポップアップ === */}
+            {showExitPopup && results.length > 0 && (
+                <div style={{
+                    position: 'fixed',
+                    top: 0, left: 0, right: 0, bottom: 0,
+                    background: 'rgba(0,0,0,0.7)',
+                    zIndex: 2000,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '1rem',
+                }} onClick={() => setShowExitPopup(false)}>
+                    <div onClick={(e: React.MouseEvent) => e.stopPropagation()} style={{
+                        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+                        borderRadius: '16px',
+                        padding: '2rem 1.5rem',
+                        maxWidth: '380px',
+                        width: '100%',
+                        textAlign: 'center' as const,
+                        border: '2px solid rgba(139, 107, 138, 0.3)',
+                        boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+                    }}>
+                        <div style={{ fontSize: '2.5rem', marginBottom: '0.8rem' }}>🔮</div>
+                        <h3 style={{ color: 'white', fontSize: '1.2rem', fontWeight: 800, marginBottom: '0.8rem' }}>
+                            まだ迷ってるなら…
+                        </h3>
+                        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: '1.2rem' }}>
+                            あなたの恋の答え、占い師が教えてくれます。<br />
+                            <strong style={{ color: '#8b6b8a' }}>今なら無料</strong>で始められます！
+                        </p>
+                        <a
+                            href={results[0]?.service.affiliateUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                display: 'block',
+                                background: 'linear-gradient(135deg, #8b6b8a 0%, #8b6b8add 100%)',
+                                color: 'white',
+                                padding: '0.9rem',
+                                borderRadius: '12px',
+                                fontWeight: 900,
+                                fontSize: '1rem',
+                                textDecoration: 'none',
+                                marginBottom: '0.8rem',
+                            }}
+                        >
+                            🔥 無料で占い師に相談 →
+                        </a>
+                        <button
+                            onClick={() => setShowExitPopup(false)}
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                color: 'rgba(255,255,255,0.4)',
+                                fontSize: '0.75rem',
+                                cursor: 'pointer',
+                                padding: '0.5rem',
+                            }}
+                        >
+                            閉じる（モヤモヤし続ける）
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <div className={`copied-toast${copiedToast ? ' show' : ''}`}>コピーしました</div>
         </>
     );
