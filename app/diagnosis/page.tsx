@@ -156,6 +156,21 @@ export default function DiagnosisPage() {
                 <div className="results-header">
                     <h2>あなたに寄り添う占い TOP3</h2>
                     <p className="results-subtitle">回答を分析して あなたの恋の悩みに一番合った占いを選びました</p>
+                    {/* 緊急性バナー */}
+                    <div style={{
+                        background: "linear-gradient(135deg, #8b6b8a 0%, #b898b6 100%)",
+                        color: "white",
+                        padding: "0.8rem 1.2rem",
+                        borderRadius: "10px",
+                        marginTop: "1rem",
+                        fontSize: "0.85rem",
+                        fontWeight: 700,
+                        textAlign: "center" as const,
+                        lineHeight: 1.6,
+                    }}>
+                        🔮 同じ悩みを持つ方の<span style={{ fontSize: "1.2em", textDecoration: "underline" }}>91%</span>が
+                        「相談してよかった」と感じています
+                    </div>
                 </div>
                 <div className="results-list">
                     {results.map((result, index) => (
@@ -174,9 +189,10 @@ export default function DiagnosisPage() {
                                 <ul className="feature-list-compact">
                                     {result.service.features.slice(0, 2).map((f, i) => (<li key={i}>{f}</li>))}
                                 </ul>
-                                <a href={result.service.affiliateUrl} target="_blank" rel="noopener noreferrer" className="btn-cta" style={{ background: result.service.color }} id={`cta-${result.service.id}`}>
-                                    {result.service.ctaText} →
+                                <a href={result.service.affiliateUrl} target="_blank" rel="noopener noreferrer" className="btn-cta" style={{ background: result.service.color, fontSize: index === 0 ? '1.05rem' : undefined, fontWeight: 800 }} id={`cta-${result.service.id}`}>
+                                    {index === 0 ? '🔥 今すぐ無料で相談する →' : `${result.service.ctaText} →`}
                                 </a>
+                                <p style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.4rem', textAlign: 'center' as const }}>※ 完全無料・匿名で利用できます</p>
                             </div>
                         </div>
                     ))}
@@ -189,8 +205,33 @@ export default function DiagnosisPage() {
                         <button className="share-btn copy" onClick={() => handleShare('copy')} id="share-copy">コピー</button>
                     </div>
                 </div>
+                {/* 損失回避メッセージ */}
+                <div style={{
+                    background: 'rgba(139, 107, 138, 0.1)',
+                    border: '1px solid rgba(139, 107, 138, 0.25)',
+                    borderRadius: '10px',
+                    padding: '1.2rem',
+                    marginBottom: '1.5rem',
+                    textAlign: 'center' as const,
+                }}>
+                    <p style={{ fontSize: '0.9rem', fontWeight: 700, color: '#8b6b8a', marginBottom: '0.4rem' }}>
+                        💜 誰にも言えない恋、一人で抱えないで
+                    </p>
+                    <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6 }}>
+                        占い師はあなたの味方。まずは<strong>無料</strong>で話を聞いてもらいませんか？
+                    </p>
+                </div>
                 <div className="retry-section">
                     <button className="btn-secondary" onClick={handleRestart} id="retry-diagnosis">もう一度占う</button>
+                    <a
+                        href={results[0]?.service.affiliateUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-cta"
+                        style={{ background: results[0]?.service.color, display: 'inline-block', marginTop: '0.8rem', fontWeight: 800 }}
+                    >
+                        🔥 1位の占い師に無料相談 →
+                    </a>
                 </div>
             </section>
             <div className={`copied-toast${copiedToast ? ' show' : ''}`}>コピーしました</div>
