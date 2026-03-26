@@ -57,6 +57,17 @@ export default function Home() {
 <p className="hero-note">
           ※ あなたの回答が外部に共有されることはありません
         </p>
+      
+        <Link href="/services" style={{
+          display: 'block',
+          fontSize: '0.75rem',
+          color: 'rgba(255,255,255,0.5)',
+          textDecoration: 'underline',
+          textAlign: 'center' as const,
+          marginTop: '1rem',
+        }}>
+          サービス一覧を見る →
+        </Link>
       </div>
     </section>
   );
