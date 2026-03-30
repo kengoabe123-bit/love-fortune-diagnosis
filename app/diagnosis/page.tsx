@@ -174,7 +174,7 @@ export default function DiagnosisPage() {
                 </h2>
                 <p style={{
                     fontSize: '0.9rem',
-                    color: 'rgba(255,255,255,0.65)',
+                    color: '#555',
                     lineHeight: 1.8,
                     marginBottom: '2rem',
                     maxWidth: '360px',
@@ -193,14 +193,14 @@ export default function DiagnosisPage() {
                         { icon: '🆓', label: '完全無料' },
                     ].map((item, i) => (
                         <div key={i} style={{
-                            background: 'rgba(255,255,255,0.06)',
-                            border: '1px solid rgba(255,255,255,0.1)',
+                            background: '#f8f9fa',
+                            border: '1px solid #e0e0e0',
                             borderRadius: '12px',
                             padding: '0.8rem 1rem',
                             textAlign: 'center',
                         }}>
                             <div style={{ fontSize: '1.3rem', marginBottom: '0.3rem' }}>{item.icon}</div>
-                            <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)', fontWeight: 600 }}>{item.label}</div>
+                            <div style={{ fontSize: '0.75rem', color: '#555', fontWeight: 600 }}>{item.label}</div>
                         </div>
                     ))}
                 </div>
@@ -231,7 +231,7 @@ export default function DiagnosisPage() {
                 >
                     🔮 無料で占う
                 </button>
-                <p style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)' }}>
+                <p style={{ fontSize: '0.7rem', color: '#888' }}>
                     ※ 個人情報の入力は不要です
                 </p>
                 </div>
@@ -329,7 +329,7 @@ export default function DiagnosisPage() {
                                 <a href={result.service.affiliateUrl} target="_blank" rel="noopener noreferrer" className="btn-cta" style={{ background: result.service.color, fontSize: index === 0 ? '1.05rem' : undefined, fontWeight: 800 }} id={`cta-${result.service.id}`}>
                                     {index === 0 ? '🔥 今すぐ無料で相談する →' : `${result.service.ctaText} →`}
                                 </a>
-                                <p style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', marginTop: '0.4rem', textAlign: 'center' as const }}>※ 完全無料・匿名で利用できます</p>
+                                <p style={{ fontSize: '0.7rem', color: '#555', marginTop: '0.4rem', textAlign: 'center' as const }}>※ 完全無料・匿名で利用できます</p>
                             </div>
                         </div>
                     ))}
@@ -348,7 +348,7 @@ export default function DiagnosisPage() {
                     marginBottom: '2rem',
                     overflowX: 'auto' as const,
                 }}>
-                    <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'white', textAlign: 'center' as const, marginBottom: '1rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#1a1a2e', textAlign: 'center' as const, marginBottom: '1rem' }}>
                         📊 TOP3サービス比較
                     </h3>
                     <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '0.5rem' }}>
@@ -356,8 +356,8 @@ export default function DiagnosisPage() {
                             <div key={idx} style={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                background: idx === 0 ? '#8b6b8a22' : 'rgba(255,255,255,0.03)',
-                                border: idx === 0 ? '2px solid #8b6b8a55' : '1px solid rgba(255,255,255,0.08)',
+                                background: idx === 0 ? '#8b6b8a22' : '#f7f8fa',
+                                border: idx === 0 ? '2px solid #8b6b8a55' : '1px solid #e0e0e0',
                                 borderRadius: '10px',
                                 padding: '0.8rem',
                                 gap: '0.8rem',
@@ -366,22 +366,22 @@ export default function DiagnosisPage() {
                                     minWidth: '28px',
                                     height: '28px',
                                     borderRadius: '50%',
-                                    background: idx === 0 ? '#8b6b8a' : 'rgba(255,255,255,0.15)',
+                                    background: idx === 0 ? '#e91e63' : '#e0e0e0',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     fontSize: '0.75rem',
                                     fontWeight: 900,
-                                    color: 'white',
+                                    color: idx === 0 ? 'white' : '#333',
                                 }}>
                                     {idx + 1}
                                 </div>
                                 <div style={{ flex: 1, minWidth: 0 }}>
-                                    <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'white', marginBottom: '2px' }}>
+                                    <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#1a1a2e', marginBottom: '2px' }}>
                                         {result.service.name}
                                         {idx === 0 && <span style={{ fontSize: '0.65rem', background: '#8b6b8a', color: 'white', padding: '1px 6px', borderRadius: '4px', marginLeft: '6px' }}>迷ったらコレ!</span>}
                                     </div>
-                                    <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)' }}>
+                                    <div style={{ fontSize: '0.7rem', color: '#555' }}>
                                         {result.service.category} · {result.service.features[0]}
                                     </div>
                                 </div>
@@ -390,7 +390,7 @@ export default function DiagnosisPage() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     style={{
-                                        background: idx === 0 ? '#8b6b8a' : 'rgba(255,255,255,0.1)',
+                                        background: idx === 0 ? '#e91e63' : '#e91e63',
                                         color: 'white',
                                         padding: '0.4rem 0.8rem',
                                         borderRadius: '20px',
@@ -408,7 +408,7 @@ export default function DiagnosisPage() {
                 </div>
                 {/* === カウントダウンタイマー === */}
                 <div style={{
-                    background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+                    background: '#f8f9fa',
                     border: '1px solid rgba(139, 107, 138, 0.3)',
                     borderRadius: '12px',
                     padding: '1.2rem',
@@ -433,32 +433,32 @@ export default function DiagnosisPage() {
                                 }}>
                                     {String(t.v).padStart(2, '0')}
                                 </div>
-                                <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.5)', marginTop: '2px' }}>{t.l}</div>
+                                <div style={{ fontSize: '0.65rem', color: '#555', marginTop: '2px' }}>{t.l}</div>
                             </div>
                         ))}
                     </div>
-                    <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)' }}>
+                    <p style={{ fontSize: '0.75rem', color: '#555' }}>
                         この時間内の登録で特別特典あり
                     </p>
                 </div>
                 {/* === 口コミ・体験談セクション === */}
                 <div style={{ marginBottom: '2rem' }}>
-                    <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'white', textAlign: 'center' as const, marginBottom: '1rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#1a1a2e', textAlign: 'center' as const, marginBottom: '1rem' }}>
                         💬 利用者の声
                     </h3>
                     {[{"age":"28歳 女性","text":"占い師さんに背中を押されて告白できました。あの時相談していなかったら…後悔してたと思います。","stars":5},{"age":"35歳 男性","text":"元カノとの復縁を相談。アドバイス通り行動したら3週間で連絡が来ました。","stars":5},{"age":"31歳 女性","text":"無料なのにここまで的中するとは…！友達にも勧めまくってます。","stars":4}].map((review: { age: string; text: string; stars: number }, i: number) => (
                         <div key={i} style={{
-                            background: 'rgba(255,255,255,0.05)',
-                            border: '1px solid rgba(255,255,255,0.1)',
+                            background: '#f8f9fa',
+                            border: '1px solid #e0e0e0',
                             borderRadius: '10px',
                             padding: '1rem',
                             marginBottom: '0.8rem',
                         }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-                                <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'rgba(255,255,255,0.8)' }}>{review.age}</span>
-                                <span style={{ color: '#ffd700', fontSize: '0.85rem' }}>{'★'.repeat(review.stars)}{'☆'.repeat(5 - review.stars)}</span>
+                                <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#333' }}>{review.age}</span>
+                                <span style={{ color: '#e91e63', fontSize: '0.85rem' }}>{'★'.repeat(review.stars)}{'☆'.repeat(5 - review.stars)}</span>
                             </div>
-                            <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, margin: 0 }}>{review.text}</p>
+                            <p style={{ fontSize: '0.8rem', color: '#555', lineHeight: 1.6, margin: 0 }}>{review.text}</p>
                         </div>
                     ))}
                 </div>
@@ -475,7 +475,7 @@ export default function DiagnosisPage() {
                     <p style={{ fontSize: '0.9rem', fontWeight: 700, color: '#8b6b8a', marginBottom: '0.4rem' }}>
                         💜 誰にも言えない恋、一人で抱えないで
                     </p>
-                    <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6 }}>
+                    <p style={{ fontSize: '0.8rem', color: '#888', lineHeight: 1.6 }}>
                         占い師はあなたの味方。まずは<strong>無料</strong>で話を聞いてもらいませんか？
                     </p>
                 </div>
@@ -543,7 +543,7 @@ export default function DiagnosisPage() {
                     padding: '1rem',
                 }} onClick={() => setShowExitPopup(false)}>
                     <div onClick={(e: React.MouseEvent) => e.stopPropagation()} style={{
-                        background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+                        background: '#f8f9fa',
                         borderRadius: '16px',
                         padding: '2rem 1.5rem',
                         maxWidth: '380px',
@@ -553,10 +553,10 @@ export default function DiagnosisPage() {
                         boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
                     }}>
                         <div style={{ fontSize: '2.5rem', marginBottom: '0.8rem' }}>🔮</div>
-                        <h3 style={{ color: 'white', fontSize: '1.2rem', fontWeight: 800, marginBottom: '0.8rem' }}>
+                        <h3 style={{ color: '#1a1a2e', fontSize: '1.2rem', fontWeight: 800, marginBottom: '0.8rem' }}>
                             まだ迷ってるなら…
                         </h3>
-                        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: '1.2rem' }}>
+                        <p style={{ color: '#555', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: '1.2rem' }}>
                             あなたの恋の答え、占い師が教えてくれます。<br />
                             <strong style={{ color: '#8b6b8a' }}>今なら無料</strong>で始められます！
                         </p>
@@ -583,7 +583,7 @@ export default function DiagnosisPage() {
                             style={{
                                 background: 'none',
                                 border: 'none',
-                                color: 'rgba(255,255,255,0.4)',
+                                color: '#888',
                                 fontSize: '0.75rem',
                                 cursor: 'pointer',
                                 padding: '0.5rem',
