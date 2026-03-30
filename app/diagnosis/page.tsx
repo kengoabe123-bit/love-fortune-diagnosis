@@ -152,7 +152,8 @@ export default function DiagnosisPage() {
 
     if (phase === 'start') {
         return (
-            <section className="question-section" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', textAlign: 'center', padding: '2rem 1rem' }}>
+            <section className="start-screen">
+                <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '2rem 1rem' }}>
                 <div style={{
                     fontSize: '4rem',
                     marginBottom: '1.5rem',
@@ -239,12 +240,7 @@ export default function DiagnosisPage() {
                 <p style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)' }}>
                     ※ 個人情報の入力は不要です
                 </p>
-                <style>{`
-                    @keyframes pulse {
-                        0%, 100% { transform: scale(1); }
-                        50% { transform: scale(1.15); }
-                    }
-                `}</style>
+                </div>
             </section>
         );
     }
