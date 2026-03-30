@@ -199,7 +199,7 @@ body {
 /* Start Screen - 神秘的な占い風 */
 .start-screen {
   min-height: 100vh;
-  background: linear-gradient(180deg, #0d0618 0%, #1a0a2e 30%, #2d1548 60%, #1a0a2e 100%);
+  background: url('/start-bg.png') center top / cover no-repeat;
   padding: 32px 20px;
   display: flex;
   flex-direction: column;
@@ -213,10 +213,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 30%, rgba(139, 107, 138, 0.2) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 80%, rgba(106, 60, 150, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 70%, rgba(180, 130, 200, 0.1) 0%, transparent 50%);
+  background: linear-gradient(180deg, rgba(13, 6, 24, 0.55) 0%, rgba(26, 10, 46, 0.6) 40%, rgba(13, 6, 24, 0.85) 100%);
   pointer-events: none;
 }
 

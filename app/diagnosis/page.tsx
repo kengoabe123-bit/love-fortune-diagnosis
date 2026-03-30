@@ -153,20 +153,14 @@ export default function DiagnosisPage() {
     if (phase === 'start') {
         return (
             <section className="start-screen">
-                <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '2rem 1rem' }}>
-                <div style={{
-                    fontSize: '4rem',
-                    marginBottom: '1.5rem',
-                    animation: 'pulse 2s ease-in-out infinite',
-                }}>
-                    🔮
-                </div>
+                <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '2rem 1rem', marginTop: '35vh' }}>
                 <h1 style={{
                     fontSize: '1.6rem',
                     fontWeight: 800,
                     color: 'white',
                     marginBottom: '0.5rem',
                     lineHeight: 1.4,
+                    textShadow: '0 2px 10px rgba(0,0,0,0.5)',
                 }}>
                     {SITE_CONFIG.tagline}
                 </h1>
