@@ -4,10 +4,10 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import { questions, calculateResults, DiagnosisResult } from '@/lib/diagnosis';
 import { SITE_CONFIG } from '@/lib/config';
 
-type Phase = 'questions' | 'results';
+type Phase = 'start' | 'questions' | 'results';
 
 export default function DiagnosisPage() {
-    const [phase, setPhase] = useState<Phase>('questions');
+    const [phase, setPhase] = useState<Phase>('start');
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState<number[]>([]);
     const [results, setResults] = useState<DiagnosisResult[]>([]);
@@ -149,6 +149,105 @@ export default function DiagnosisPage() {
         },
         [results]
     );
+
+    if (phase === 'start') {
+        return (
+            <section className="question-section" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', textAlign: 'center', padding: '2rem 1rem' }}>
+                <div style={{
+                    fontSize: '4rem',
+                    marginBottom: '1.5rem',
+                    animation: 'pulse 2s ease-in-out infinite',
+                }}>
+                    🔮
+                </div>
+                <h1 style={{
+                    fontSize: '1.6rem',
+                    fontWeight: 800,
+                    color: 'white',
+                    marginBottom: '0.5rem',
+                    lineHeight: 1.4,
+                }}>
+                    {SITE_CONFIG.tagline}
+                </h1>
+                <h2 style={{
+                    fontSize: '1.1rem',
+                    fontWeight: 600,
+                    color: '#b898b6',
+                    marginBottom: '1.5rem',
+                }}>
+                    秘密の恋 占い診断
+                </h2>
+                <p style={{
+                    fontSize: '0.9rem',
+                    color: 'rgba(255,255,255,0.65)',
+                    lineHeight: 1.8,
+                    marginBottom: '2rem',
+                    maxWidth: '360px',
+                }}>
+                    {SITE_CONFIG.description}
+                </p>
+                <div style={{
+                    display: 'flex',
+                    gap: '1rem',
+                    marginBottom: '2rem',
+                    justifyContent: 'center',
+                }}>
+                    {[
+                        { icon: '📝', label: `全${questions.length}問` },
+                        { icon: '⏱️', label: '約2分' },
+                        { icon: '🆓', label: '完全無料' },
+                    ].map((item, i) => (
+                        <div key={i} style={{
+                            background: 'rgba(255,255,255,0.06)',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            borderRadius: '12px',
+                            padding: '0.8rem 1rem',
+                            textAlign: 'center',
+                        }}>
+                            <div style={{ fontSize: '1.3rem', marginBottom: '0.3rem' }}>{item.icon}</div>
+                            <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)', fontWeight: 600 }}>{item.label}</div>
+                        </div>
+                    ))}
+                </div>
+                <button
+                    onClick={() => setPhase('questions')}
+                    id="start-diagnosis"
+                    style={{
+                        background: 'linear-gradient(135deg, #8b6b8a 0%, #b898b6 100%)',
+                        color: 'white',
+                        border: 'none',
+                        padding: '1rem 3rem',
+                        borderRadius: '50px',
+                        fontSize: '1.1rem',
+                        fontWeight: 800,
+                        cursor: 'pointer',
+                        boxShadow: '0 8px 25px rgba(139, 107, 138, 0.4)',
+                        transition: 'transform 0.2s, box-shadow 0.2s',
+                        marginBottom: '1rem',
+                    }}
+                    onMouseOver={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.boxShadow = '0 12px 35px rgba(139, 107, 138, 0.6)';
+                    }}
+                    onMouseOut={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = '0 8px 25px rgba(139, 107, 138, 0.4)';
+                    }}
+                >
+                    🔮 無料で占う
+                </button>
+                <p style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)' }}>
+                    ※ 個人情報の入力は不要です
+                </p>
+                <style>{`
+                    @keyframes pulse {
+                        0%, 100% { transform: scale(1); }
+                        50% { transform: scale(1.15); }
+                    }
+                `}</style>
+            </section>
+        );
+    }
 
     if (phase === 'questions') {
         const question = questions[currentQuestion];
