@@ -13,6 +13,9 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   title: '秘密の恋ノート — 誰にも言えない恋に寄り添う無料占い診断',
   description: '誰にも言えない恋を抱えたあなたへ。7つの質問に答えるだけで、今のあなたに一番寄り添ってくれる占い師が見つかります。完全無料・個人情報不要。',
+  verification: {
+    google: 'KvzKu39UZd83_x3idpa06ZQbeXzlo5J-Mn1ACXskPf0',
+  },
   openGraph: {
     title: '秘密の恋ノート — 誰にも言えない恋に寄り添う無料占い診断',
     description: '誰にも言えない恋の苦しさ 7つの質問で あなたに合った相談相手が見つかります',
