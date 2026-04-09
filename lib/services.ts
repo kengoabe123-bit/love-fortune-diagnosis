@@ -162,6 +162,24 @@ export const services: Service[] = [
     ctaText: '話を聞いてもらう',
     color: '#d4af37',
   },
+  {
+    id: 'ulana',
+    slug: 'ulana',
+    name: '電話占い・メール占いULana（ウラナ）',
+    nameEn: 'ULana',
+    tagline: '初回10分無料、実力派占い師に今すぐ相談',
+    description: '電話占い・メール占いの両方に対応した総合占いサービス。初回10分無料で、恋愛・復縁・不倫など複雑な悩みに寄り添う実力派占い師が多数在籍しています。',
+    category: '電話占い・メール占い',
+    target: '電話でもメールでも相談したい方に',
+    targetAge: ['20代', '30代', '40代', '50代'],
+    features: ['初回10分無料で気軽にお試し', '電話占い・メール占い両対応', '恋愛・復縁に強い占い師が在籍'],
+    pros: ['電話とメールの両方が選べて便利', '初回無料特典で試しやすい'],
+    cons: ['知名度は大手より低め'],
+    recommended: ['電話もメールも使い分けたい', '複雑な恋の悩みを相談したい'],
+    affiliateUrl: 'https://px.a8.net/svt/ejp?a8mat=4AZHWA+4GRJ36+2VYS+61JSI',
+    ctaText: '話を聞いてもらう',
+    color: '#e88ca5',
+  },
 ];
 
 export function getServiceBySlug(slug: string): Service | undefined {
