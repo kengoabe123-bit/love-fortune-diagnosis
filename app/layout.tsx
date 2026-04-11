@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: '秘密の恋ノート — 誰にも言えない恋に寄り添う無料占い診断',
   description: '誰にも言えない恋を抱えたあなたへ。7つの質問に答えるだけで、今のあなたに一番寄り添ってくれる占い師が見つかります。完全無料・個人情報不要。',
   verification: {
-    google: 'Mlqh5zm0FnokIIIavzUIGMbvBVSdL-3x8VQhTys_fuQ',
+    google: 'MIqh5zm0FnokIIIavzUIGMbvBVSdL-3x8VQhTys_fuQ',
   },
   openGraph: {
     title: '秘密の恋ノート — 誰にも言えない恋に寄り添う無料占い診断',
