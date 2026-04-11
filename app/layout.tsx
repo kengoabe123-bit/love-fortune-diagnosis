@@ -12,13 +12,13 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 const SITE_NAME = '秘密の恋ノート';
-const SITE_URL = 'https://love-fortune-diagnosis.vercel.app';
+const SITE_URL = 'https://love-fortune-diagnosis.pages.dev';
 
 export const metadata: Metadata = {
   title: '秘密の恋ノート — 誰にも言えない恋に寄り添う無料占い診断',
   description: '誰にも言えない恋を抱えたあなたへ。7つの質問に答えるだけで、今のあなたに一番寄り添ってくれる占い師が見つかります。完全無料・個人情報不要。',
   verification: {
-    google: 'KvzKu39UZd83_x3idpa06ZQbeXzlo5J-Mn1ACXskPf0',
+    google: 'Mlqh5zm0FnokIIIavzUIGMbvBVSdL-3x8VQhTys_fuQ',
   },
   openGraph: {
     title: '秘密の恋ノート — 誰にも言えない恋に寄り添う無料占い診断',

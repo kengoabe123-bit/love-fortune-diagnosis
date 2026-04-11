@@ -8,7 +8,7 @@ import { ArticleSchema, BreadcrumbSchema } from '@/components/StructuredData';
 interface PageProps { params: Promise<{ slug: string }>; }
 
 const SITE_NAME = '秘密の恋ノート';
-const SITE_URL = 'https://love-fortune-diagnosis.vercel.app';
+const SITE_URL = 'https://love-fortune-diagnosis.pages.dev';
 
 export async function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
