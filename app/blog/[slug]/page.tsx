@@ -3,8 +3,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllArticles, getArticleBySlug } from '@/content/articles';
 import { BlogCTA } from '@/components/BlogCTA';
+import { ArticleSchema, BreadcrumbSchema } from '@/components/StructuredData';
 
 interface PageProps { params: Promise<{ slug: string }>; }
+
+const SITE_NAME = '秘密の恋ノート';
+const SITE_URL = 'https://love-fortune-diagnosis.vercel.app';
 
 export async function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
@@ -14,7 +18,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) return {};
-  return { title: `${article.title} | 秘密の恋ノート`, description: article.description, keywords: article.keywords.join(', '), openGraph: { title: article.title, description: article.description, type: 'article', locale: 'ja_JP', publishedTime: article.publishedAt, modifiedTime: article.updatedAt } };
+  return { title: `${article.title} | ${SITE_NAME}`, description: article.description, keywords: article.keywords.join(', '), openGraph: { title: article.title, description: article.description, type: 'article', locale: 'ja_JP', publishedTime: article.publishedAt, modifiedTime: article.updatedAt } };
 }
 
 export default async function ArticlePage({ params }: PageProps) {
@@ -24,6 +28,22 @@ export default async function ArticlePage({ params }: PageProps) {
 
   return (
     <main className="article-page">
+      <ArticleSchema
+        title={article.title}
+        description={article.description}
+        url={`${SITE_URL}/blog/${slug}`}
+        publishedAt={article.publishedAt}
+        updatedAt={article.updatedAt}
+        siteName={SITE_NAME}
+        siteUrl={SITE_URL}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'ホーム', url: SITE_URL },
+          { name: '記事一覧', url: `${SITE_URL}/blog` },
+          { name: article.title, url: `${SITE_URL}/blog/${slug}` },
+        ]}
+      />
       <article className="article-content">
         <header className="article-header">
           <div className="article-header-meta">
@@ -53,3 +73,4 @@ export default async function ArticlePage({ params }: PageProps) {
     </main>
   );
 }
+
