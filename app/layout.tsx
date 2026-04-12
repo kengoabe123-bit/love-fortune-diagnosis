@@ -12,7 +12,7 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 const SITE_NAME = '秘密の恋ノート';
-const SITE_URL = 'https://love-fortune-diagnosis.pages.dev';
+const SITE_URL = 'https://himitsu-koi.com';
 
 export const metadata: Metadata = {
   title: '秘密の恋ノート — 誰にも言えない恋に寄り添う無料占い診断',

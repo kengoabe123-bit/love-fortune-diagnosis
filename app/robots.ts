@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://love-fortune-diagnosis.pages.dev/sitemap.xml',
+    sitemap: 'https://himitsu-koi.com/sitemap.xml',
   };
 }
