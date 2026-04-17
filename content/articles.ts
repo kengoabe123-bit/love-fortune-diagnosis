@@ -6,7 +6,19 @@ export interface Article {
   updatedAt: string;
   category: string;
   keywords: string[];
-  sections: { heading: string; content: string; }[];
+    heroImage?: {
+    src: string;
+    alt: string;
+  };
+  sections: {
+    heading: string;
+    content: string;
+    image?: {
+      src: string;
+      alt: string;
+      caption?: string;
+    };
+  }[];
 }
 
 export const articles: Article[] = [
