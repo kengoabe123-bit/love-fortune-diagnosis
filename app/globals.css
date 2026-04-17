@@ -817,7 +817,7 @@ body {
 .article-read-more { color: var(--accent); font-weight: 500; }
 
 /* Article Page */
-.article-page { padding: 80px 20px 60px; max-width: 720px; margin: 0 auto; }
+.article-page { padding: 0; }
 .article-content { background: var(--bg-white); border-radius: var(--radius-lg); padding: 36px 28px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); }
 .article-header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); }
 .article-header-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
